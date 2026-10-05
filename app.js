@@ -81,7 +81,7 @@ function render(){
  $('selected-count').textContent=state.ids.length;$('empty').hidden=!!state.ids.length;$('reset').disabled=!ready||(!state.ids.length&&state.birth===null);
  syncScroll(Math.max(0,Math.min(horizontal,width-($('timeline').clientWidth-label))));renderCatalog();
 }
-function add(id){if(!byId.has(id)||state.ids.includes(id))return;state.ids.push(id);save();render();$('search').value='';search();$('search').focus({preventScroll:true});announce(byId.get(id).name+'を追加しました',false);}
+function add(id,focusSearch=true){if(!byId.has(id)||state.ids.includes(id))return;state.ids.push(id);save();render();$('search').value='';search();if(focusSearch)$('search').focus({preventScroll:true});announce(byId.get(id).name+'を追加しました',false);}
 function search(){
  const q=norm($('search').value);activeIndex=-1;matches=[];$('search').removeAttribute('aria-activedescendant');$('results').replaceChildren();
  if(!q){$('search-help').textContent='日本語名・英語名・略称で検索できます。';$('search').setAttribute('aria-expanded','false');return;}
@@ -90,7 +90,7 @@ function search(){
  matches.forEach((a,i)=>{const b=node('button','candidate');b.id='result-'+i;b.setAttribute('role','option');b.setAttribute('aria-selected','false');b.disabled=state.ids.includes(a.id);b.append(node('strong','',a.name+(b.disabled?' · 追加済み':'')),node('small','',[a.countries,period(a)].filter(Boolean).join(' / ')));b.onclick=()=>add(a.id);$('results').append(b);});$('search').setAttribute('aria-expanded',String(!!matches.length));
 }
 function renderCatalog(){const c=$('catalog-list');c.replaceChildren();for(const country of [...new Set(artists.map(a=>a.countries))]){
- const h=node('p','help',country||'国未登録');c.append(h);artists.filter(a=>a.countries===country).forEach(a=>{const b=node('button','catalog-item');b.disabled=state.ids.includes(a.id);b.append(node('strong','',a.name+(b.disabled?' · 追加済み':'')),node('small','',period(a)));b.onclick=()=>add(a.id);c.append(b);});}}
+ const h=node('p','help',country||'国未登録');c.append(h);artists.filter(a=>a.countries===country).forEach(a=>{const b=node('button','catalog-item');b.disabled=state.ids.includes(a.id);b.append(node('strong','',a.name+(b.disabled?' · 追加済み':'')),node('small','',period(a)));b.onclick=()=>add(a.id,false);c.append(b);});}}
 function bindLongPress(el,callback){let timer,x,y;const clear=()=>clearTimeout(timer);el.addEventListener('pointerdown',e=>{if(e.button!==0)return;x=e.clientX;y=e.clientY;timer=setTimeout(callback,600);});el.addEventListener('pointermove',e=>{if(Math.hypot(e.clientX-x,e.clientY-y)>8)clear();});['pointerup','pointercancel','pointerleave'].forEach(t=>el.addEventListener(t,clear));el.addEventListener('contextmenu',e=>e.preventDefault());}
 function bindDrag(handle,row){let drag=null;handle.addEventListener('pointerdown',e=>{if(e.button!==0)return;handle.setPointerCapture(e.pointerId);drag={id:row.dataset.id,start:e.clientY,target:null,moved:false};});
  handle.addEventListener('pointermove',e=>{if(!drag)return;if(Math.abs(e.clientY-drag.start)<6&&!drag.moved)return;drag.moved=true;row.classList.add('dragging');
