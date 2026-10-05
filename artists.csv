@@ -1,0 +1,31 @@
+id,name,start_year,end_year,status,aliases,genres,countries,source_url
+jp-southern,サザンオールスターズ,1975,,active,Southern All Stars|サザン|SAS,rock|pop rock,日本,https://en.wikipedia.org/wiki/Southern_All_Stars
+jp-bz,B'z,1988,,active,ビーズ|B’z,hard rock|blues rock,日本,https://en.wikipedia.org/wiki/B%27z
+jp-mrchildren,Mr.Children,1989,,active,Mr. Children|ミスターチルドレン|ミスチル,pop rock|power pop,日本,https://en.wikipedia.org/wiki/Mr._Children
+jp-spitz,スピッツ,1987,,active,Spitz,alternative rock|pop rock,日本,https://en.wikipedia.org/wiki/Spitz_(band)
+jp-glay,GLAY,1988,,active,グレイ,pop rock|power pop,日本,https://en.wikipedia.org/wiki/Glay
+jp-larc,L'Arc-en-Ciel,1991,,active,ラルク|ラルクアンシエル|ラルク アン シエル|L’Arc-en-Ciel,alternative rock|pop rock,日本,https://en.wikipedia.org/wiki/L%27Arc-en-Ciel
+jp-oneokrock,ONE OK ROCK,2005,,active,ワンオクロック|ワンオク,alternative rock|emo,日本,https://en.wikipedia.org/wiki/One_Ok_Rock
+jp-ajikan,ASIAN KUNG-FU GENERATION,1996,,active,アジアンカンフージェネレーション|アジカン|AKG|AKFG,indie rock|alternative rock,日本,https://en.wikipedia.org/wiki/Asian_Kung-Fu_Generation
+jp-judymary,JUDY AND MARY,1991,2001,ended,ジュディアンドマリー|ジュディマリ|JAM,pop rock|pop punk,日本,https://en.wikipedia.org/wiki/Judy_and_Mary
+jp-bluehearts,THE BLUE HEARTS,1985,1995,ended,ザ・ブルーハーツ|ブルーハーツ,punk rock,日本,https://en.wikipedia.org/wiki/The_Blue_Hearts
+uk-beatles,The Beatles,1960,1970,ended,ザ・ビートルズ|ビートルズ,rock|pop,イギリス,https://en.wikipedia.org/wiki/The_Beatles
+uk-stones,The Rolling Stones,1962,,active,ザ・ローリング・ストーンズ|ローリングストーンズ|ストーンズ,rock|blues,イギリス,https://en.wikipedia.org/wiki/The_Rolling_Stones
+uk-zeppelin,Led Zeppelin,1968,1980,ended,レッド・ツェッペリン|レッドツェッペリン,hard rock|blues rock,イギリス,https://en.wikipedia.org/wiki/Led_Zeppelin
+uk-queen,Queen,1970,,active,クイーン,rock|pop,イギリス,https://en.wikipedia.org/wiki/Queen_(band)
+uk-feelgood,Dr. Feelgood,1971,,active,ドクター・フィールグッド|ドクターフィールグッド,pub rock|blues rock|rhythm and blues,イギリス,https://en.wikipedia.org/wiki/Dr._Feelgood_(band)
+uk-clash,The Clash,1976,1986,ended,ザ・クラッシュ|クラッシュ,punk rock|new wave,イギリス,https://en.wikipedia.org/wiki/The_Clash
+uk-police,The Police,1977,2008,ended,ザ・ポリス|ポリス,new wave|reggae rock,イギリス,https://en.wikipedia.org/wiki/The_Police
+uk-radiohead,Radiohead,1985,,active,レディオヘッド,alternative rock|art rock,イギリス,https://en.wikipedia.org/wiki/Radiohead
+uk-coldplay,Coldplay,1997,,active,コールドプレイ,alternative rock|pop rock,イギリス,https://en.wikipedia.org/wiki/Coldplay
+uk-kinks,The Kinks,1962,1997,ended,ザ・キンクス|キンクス,rock|pop,イギリス,https://en.wikipedia.org/wiki/The_Kinks
+us-gnr,Guns N' Roses,1985,,active,ガンズ・アンド・ローゼズ|ガンズ|GNR|Guns N’ Roses,hard rock|heavy metal,アメリカ,https://en.wikipedia.org/wiki/Guns_N%27_Roses
+us-metallica,Metallica,1981,,active,メタリカ,heavy metal|thrash metal,アメリカ,https://en.wikipedia.org/wiki/Metallica
+us-nirvana,Nirvana,1987,1994,ended,ニルヴァーナ|ニルバーナ,grunge|alternative rock,アメリカ,https://en.wikipedia.org/wiki/Nirvana_(band)
+us-rhcp,Red Hot Chili Peppers,1982,,active,レッド・ホット・チリ・ペッパーズ|レッチリ|RHCP,alternative rock|funk rock,アメリカ,https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers
+us-greenday,Green Day,1987,,active,グリーン・デイ|グリーンデイ,punk rock|pop punk,アメリカ,https://en.wikipedia.org/wiki/Green_Day
+us-foofighters,Foo Fighters,1994,,active,フー・ファイターズ|フーファイターズ,alternative rock|post-grunge,アメリカ,https://en.wikipedia.org/wiki/Foo_Fighters
+us-linkin,Linkin Park,1996,,active,リンキン・パーク|リンキンパーク,alternative rock|nu metal,アメリカ,https://en.wikipedia.org/wiki/Linkin_Park
+us-ccr,Creedence Clearwater Revival,1968,1972,ended,クリーデンス・クリアウォーター・リバイバル|CCR,swamp rock|roots rock|blues rock,アメリカ,https://en.wikipedia.org/wiki/Creedence_Clearwater_Revival
+us-ramones,Ramones,1974,1996,ended,ラモーンズ|ラモンズ,punk rock|pop punk,アメリカ,https://en.wikipedia.org/wiki/Ramones
+us-whitestripes,The White Stripes,1997,2011,ended,ザ・ホワイト・ストライプス|ホワイトストライプス,garage rock|blues rock,アメリカ,https://en.wikipedia.org/wiki/The_White_Stripes

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><meta name="description" content="好きなバンドの活動期間と、自分の生きている時代を並べる音楽年表。">
+<title>音楽年表 — Music Timeline</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316222f'/%3E%3Cpath d='M6 9h14M12 16h14M6 23h12' stroke='%2366c0f4' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css"><script src="./app.js" defer></script>
+</head>
+<body>
+<header class="masthead"><div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8h20M12 16h17M3 24h15"/></svg><span>MUSIC TIMELINE</span></div></header>
+<main>
+<div class="page-title"><div><h1>音楽年表</h1></div><span id="save-status" class="save-state" role="status">このブラウザに自動保存</span></div>
+<div id="notice" class="notice" role="status" hidden></div>
+<div class="workspace">
+<aside class="sidebar" aria-label="年表の設定">
+<section class="panel"><h2>アーティストを追加</h2><label class="sr-only" for="search">アーティスト名で検索</label><div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="search" type="search" placeholder="バンド名・アーティスト名" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="results" disabled></div><p id="search-help" class="help">データを読み込んでいます…</p><div id="results" role="listbox" aria-label="検索候補"></div><button id="retry" hidden>再読み込み</button><details id="catalog"><summary>収録アーティスト <span id="catalog-count">0組</span></summary><div id="catalog-list"></div></details></section>
+<section class="panel birth-panel"><h2><label for="birth">自分の生まれ年 <span class="optional">任意</span></label></h2><div class="birth-wrap"><input id="birth" type="number" inputmode="numeric" min="1900" placeholder="例：1990" aria-describedby="birth-help birth-error"><span>年</span></div><p id="birth-help" class="help">自分の時代を重ねて見られます。</p><p id="birth-error" class="error" role="alert" hidden></p></section>
+<section class="panel guide"><h2>年表の使い方</h2><p>名前を検索して追加します。<br>行のつまみで並べ替え、名前や「⋯」から詳細・削除を開けます。</p><p>活動期間は休止期間を含む概略です。詳しい履歴は各行の出典をご覧ください。</p></section>
+</aside>
+<section class="timeline-section" aria-label="音楽年表">
+<div class="timeline-top"><h2>マイタイムライン <span id="selected-count">0</span></h2><div class="legend"><span><i></i>アーティスト</span><span><i class="you"></i>あなた</span></div></div>
+<div id="timeline" class="timeline"><div id="fixed-head" class="fixed-head"></div><div id="rows"></div></div>
+<div id="empty" class="empty"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M5 15h45M30 30h60M15 45h45"/><circle cx="5" cy="15" r="3"/><circle cx="30" cy="30" r="3"/><circle cx="15" cy="45" r="3"/></svg><h3>好きなバンドから、時代をたどる。</h3><p>名前を検索して、最初の1組を追加してください。</p><div class="suggestions" id="suggestions"></div></div>
+<footer class="timeline-footer"><p>横にスクロールして年代を移動できます。<br><span>活動年の出典：Wikipedia／サンプル30組・2026年10月5日確認</span></p><button id="reset" class="quiet" disabled>年表をリセット</button></footer>
+</section>
+</div>
+<footer class="site-footer"><span>MUSIC TIMELINE</span><span>保存先はこのブラウザです。端末間の同期は行いません。</span></footer>
+</main>
+<dialog id="artist-dialog" aria-labelledby="artist-title"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">ARTIST</p><h2 id="artist-title"></h2><p id="artist-meta"></p><p id="artist-genres" class="muted"></p><p id="artist-age" class="age-note"></p><a id="artist-source" target="_blank" rel="noopener noreferrer">Wikipediaで活動歴を見る</a><div class="dialog-actions"><button id="move-up">上へ移動</button><button id="move-down">下へ移動</button><button id="delete" class="danger">年表から削除</button></div></dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">年表をリセットしますか？</h2><p>生まれ年と追加したアーティスト・並び順をすべてリセットします。</p><div class="dialog-actions"><button id="cancel-reset" autofocus>キャンセル</button><button id="confirm-reset" class="danger">リセットする</button></div></dialog>
+<div id="toast" class="toast" role="status" hidden><span id="toast-text"></span><button id="undo">元に戻す</button></div>
+<noscript><p>この年表の操作にはJavaScriptを有効にしてください。</p></noscript>
+</body></html>
