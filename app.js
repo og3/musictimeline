@@ -40,9 +40,17 @@ function restore(){try{const raw=localStorage.getItem(key);if(!raw)return;const 
  if(state.ids.length!==new Set(s.ids).size)notice('一部のアーティストを復元できませんでした。登録データが変更された可能性があります。');
  }catch{notice('保存データを読み込めませんでした。空の年表から利用できます。');}}
 function syncScroll(left){horizontal=left;document.querySelectorAll('.plot-viewport').forEach(v=>{if(Math.abs(v.scrollLeft-left)>1)v.scrollLeft=left;});}
-function grid(plot,start,width){const span=Math.max(1,now-start),x=y=>24+(y-start)/span*(width-80);const step=span<=45?5:10;
- for(let y=start;y<=now;y+=step){if(now-y>0&&now-y<step*.55)continue;const l=node('span','gridline');l.style.left=x(y)+'px';plot.append(l);}
- const l=node('span','gridline current');l.style.left=x(now)+'px';plot.append(l);return x;}
+function timelineScale(start,width){
+ const compact=window.matchMedia('(max-width:560px)').matches;
+ const span=Math.max(1,now-start),left=compact?12:24,right=compact?12:56;
+ const usable=Math.max(1,width-left-right),x=y=>left+(y-start)/span*usable;
+ const step=compact?([5,10,20,25,50,100,200,500].find(n=>n/span*usable>=44)||1000):(span<=45?5:10);
+ const years=[];for(let y=start;y<=now;y+=step){if(y!==now&&now-y>0&&(compact?x(now)-x(y)<44:now-y<step*.55))continue;years.push(y);}
+ if(!years.includes(now))years.push(now);
+ return {x,years};
+}
+function grid(plot,start,width){const {x,years}=timelineScale(start,width);
+ for(const y of years){const l=node('span','gridline'+(y===now?' current':''));l.style.left=x(y)+'px';plot.append(l);}return x;}
 function makePlot(start,width){const vp=node('div','plot-viewport');vp.tabIndex=0;vp.setAttribute('aria-label','年表を横スクロール');const p=node('div','plot');vp.append(p);const x=grid(p,start,width);vp.addEventListener('scroll',()=>{if(Math.abs(vp.scrollLeft-horizontal)>1)syncScroll(vp.scrollLeft);},{passive:true});return {vp,p,x};}
 function drawBar(p,x,a,self=false){
  const st=x(a.start_year),en=x(a.status==='active'?now:a.end_year||a.start_year);
@@ -50,7 +58,7 @@ function drawBar(p,x,a,self=false){
  if(a.status==='unknown')bar.style.background='transparent';p.append(bar);
  const first=node('span','year-label'+(en-st<100?' short-start':''),String(a.start_year));first.style.left=st+'px';p.append(first);
  const last=node('span','year-label end',a.status==='active'?(self?'現在':'活動中'):a.status==='unknown'?'終了年不明':String(a.end_year));
- last.style.left=(a.status==='unknown'?st+95:en)+'px';p.append(last);
+ last.style.left=(a.status==='unknown'?Math.min(st+95,x(now)):en)+'px';p.append(last);
 }
 function render(){
  const rows=$('rows'),head=$('fixed-head');rows.replaceChildren();head.replaceChildren();
@@ -58,10 +66,10 @@ function render(){
  const years=selected.map(a=>a.start_year);if(state.birth)years.push(state.birth);
  const start=Math.floor((years.length?Math.min(...years):1950)/10)*10;
  const label=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--label'));
- const width=Math.max(700,$('timeline').clientWidth-label-2);$('timeline').style.setProperty('--plot',width+'px');
- const axis=node('div','timeline-row axis');axis.append(node('div','row-label','西暦 / YEAR'));const ap=makePlot(start,width);const step=now-start<=45?5:10;
- for(let y=start;y<=now;y+=step){if(now-y>0&&now-y<step*.55)continue;const t=node('span','tick',String(y));t.style.left=ap.x(y)+'px';ap.p.append(t);}
- const current=node('span','tick current',String(now));current.style.left=ap.x(now)+'px';if(now%step!==0||start===now)ap.p.append(current);axis.append(ap.vp);head.append(axis);
+ const compact=window.matchMedia('(max-width:560px)').matches;
+ const width=Math.max(compact?1:700,$('timeline').clientWidth-label);$('timeline').style.setProperty('--plot',width+'px');
+ const axis=node('div','timeline-row axis');axis.append(node('div','row-label','西暦 / YEAR'));const ap=makePlot(start,width);
+ for(const y of timelineScale(start,width).years){const t=node('span','tick'+(y===now?' current':''),String(y));t.style.left=ap.x(y)+'px';ap.p.append(t);}axis.append(ap.vp);head.append(axis);
  if(state.birth){const row=node('div','timeline-row self-row');const label=node('div','row-label');const txt=node('div','','あなた');txt.append(node('small','',`今年で${now-state.birth}歳`));label.append(txt);row.append(label);const o=makePlot(start,width);drawBar(o.p,o.x,{start_year:state.birth,status:'active'},true);row.append(o.vp);head.append(row);}
  selected.forEach(a=>{
  const row=node('div','timeline-row artist-row');row.dataset.id=a.id;
